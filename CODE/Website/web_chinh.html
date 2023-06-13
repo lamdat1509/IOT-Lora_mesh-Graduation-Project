@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assest/fonts/fontawesome-free-6.3.0-web/css/all.min.css">
+    <link rel="stylesheet" href="./assest/css/Web_chinh.css">
+    <link rel="stylesheet" href="./assest/css/row.css">
+    <link rel="stylesheet" href="./assest/css/mobile.css">
+    <title>Agriculture</title>
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header">
+        <div class="navbar navbar-expand-lg navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link mobie-home" href="#">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#background">Environment temperature</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Hum_2">Soil Moisture</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Light_3">Light Intensity</a>
+                </li>
+            </ul>
+            <form class="my-lg-0">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item mx-1">
+                        <a id="userlink" class="nav-link" href="">User name</a>
+                    </li>
+
+                    <li class="nav-item mx-1 mobie-sign">
+                        <a id="signoutlink" class="nav-link" href="">Sign out</a>
+                    </li>
+                </ul>
+            </form>
+            </nav>
+        </div>
+    </div>
+    <!-- body -->
+    <!------------------------------------------------------------------------------------ NODE_1------------------------------------------->
+    <div class="node_1" id="background">
+        <div class="node-back">
+            <div class="Temperature">
+                <div id="box" class="boxs">
+                    <svg id="hinh_tron" class="circles">
+                        <defs>
+                            <linearGradient id="GradientColor">
+                                <stop offset="0%" stop-color="#3d0ced" />
+                                <stop offset="100%" stop-color="#8510c4" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="150" cy="150" r="145" class="unders" id="under"></circle>
+                        <circle cx="150" cy="150" r="145" class="aboves" id="above"></circle>
+                    </svg>
+                    <span class="Temperature-text">TEMPERATURE</span>
+                </div>
+
+                <div class="containers">
+                    <div id="small_round" class="small_rounds"></div>
+                </div>
+                <text id="percent" class="percents" text-anchor="middle" alignment-baseline="control">0&#176C</text>
+            </div>
+
+            <div class="Warning">
+                <h1>User warning</h1>
+                <div class="Suitable">
+                    <span class=" Suitable-text-suitable">Suitable</span>
+                    <span class="Suitable-text-temperature">Temperature</span>
+                    <video src="./assest/img/6.mp4" autoplay muted loop class="Suitable-video"></video>
+                </div>
+                <div class="Inappropriate" style="display:none">
+                    <span class="Inappropriate-text-Inappropriate">Inappropriate</span>
+                    <span class="Inappropriate-text-temperature"> Temperature</span>
+                    <video src="./assest/img/5.mp4" autoplay muted loop class="Suitable-video"></video>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------------------------------------------------------ NODE_2------------------------------------------->
+    <div class="node_2" id="Hum_2">
+        <span class="node_2-text">HUMIDITY GROUND</span>
+        <div class="Humidity">
+            <div class="box">
+                <text id="percent_hum"> 0% </text>
+            </div>
+        </div>
+        <div class="soil_nav">
+            <div class="soil-moisture">
+                <input type="range" min="0" max="120" value="0" class="slider__2">
+                <output class="soil-moisture-label">%</output>
+                <div class="soil-moisture-bar"></div>
+            </div>
+        </div>
+        <div class="node_2-warning">
+            <span class="Proper">Proper Humidity</span>
+            <span class="Inadequate" style="display:none">Inadequate Humidity</span>
+        </div>
+        <div class="node_2_sw">
+            <span class="text_sw">Switch Mode</span>
+            <label class="switch2">
+                <input type="checkbox" id="togg">
+                <span class="slider2"></span>
+            </label>
+        </div>
+        <div class="box_node-2">
+            <div class="text_mortor">MOTOR</div>
+            <div class="mortor">
+                <div class="fan">
+                    <div class="blade blade-1"></div>
+                    <div class="blade blade-2"></div>
+                    <div class="tam"></div>
+                    <div class="blade blade-3"></div>
+                </div>
+            </div>
+            <div class="box_container">
+                <button class="btn2 node2on" id="motoron">ON</button>
+                <button class="btn2 node2off" id="motoroff">OFF</button>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------------------------------------------------------ NODE_3------------------------------------------->
+    <div class="node_3" id="Light_3">
+        <div class="block_3">
+            <div class="state_change">
+                <div class="node_3_sw">
+                    <span class="text_sw">Switch Mode</span>
+                    <label class="switch">
+                        <input type="checkbox" id="toggleSwitch">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="block_led">
+                    <h1 class="text-node3"> Led Status:
+                        <span id="den_St"> OFF </span>
+                    </h1>
+                    <img id="led" src="./assest/img/toi.png">
+                    <div class="btn-led">
+                        <button class="btn__node3" type="button" id="btn_Ledon">ON</button>
+                        <button class="btn__node3" type="button" id="btn_Ledoff">OFF</button>
+                    </div>
+                </div>
+            </div>
+            <div class="block_Status">
+                <div class="block-Ngay">
+                    <h1 class="text-Br-Da">Bright</h1>
+                    <video id="Br_block" autoplay muted loop src="./assest/img/001.mp4">
+                </div>
+                <div class="block-Dem" style="display:none">
+                    <h1 class="text-Br-Da">Dark</h1>
+                    <video id="Da-block" autoplay muted loop src="./assest/img/002.mp4">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+
+    <script src="./JAVASCRIP/node3.js"></script>
+    <script src="./JAVASCRIP/chinh.js"></script>
+    <script src="./JAVASCRIP/node2.js"></script>
+    <script src="./JAVASCRIP/app.js"></script>
+
+</body>
+
+</html>

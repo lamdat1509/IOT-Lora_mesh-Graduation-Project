@@ -1,0 +1,111 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+}
+
+/* --------------------------------------------------------------------- */
+.wapper {
+    width: 340px;
+    box-shadow: 0px 0px 17px 2px rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+}
+
+.auth-form__input {
+    margin-right: 10px;
+}
+
+.wapper-heading {
+    margin: 10px 0 -30px 0;
+}
+
+.wapper-heading h1 {
+    color: white;
+}
+
+.wapper input {
+    padding-left: 30px;
+    margin-bottom: -20px;
+    margin-top: 15px;
+    height: 45px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    outline: none;
+}
+
+/* icon */
+.auth-form__group-icon {
+    position: relative;
+    right: 148px;
+    top: 50px;
+    padding: 0;
+    margin: 0;
+}
+
+/* login eye */
+.auth-form__eyes-login {
+    font-size: 1.2rem;
+    position: absolute;
+    right: 0;
+    margin: -21.5px 45px 0 0;
+    cursor: pointer;
+}
+
+/* sign eye */
+.auth-form__eyes-sign-pass {
+    font-size: 1.2rem;
+    position: absolute;
+    right: 35px;
+    cursor: pointer;
+    margin: -21.5px 10px 0 0;
+}
+
+.btn-login,
+.btn-signup {
+    padding: 8px 15px;
+    margin-left: 30.5px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background: var(--primary-color);
+    transition: all 0.2s linear;
+    color: var(--white-color);
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+
+.wapper input:focus {
+    border: 1px solid var(--white-color);
+}
+
+.wapper input::placeholder {
+    color: black;
+}
+
+.signup-link,
+.login-link {
+    display: block;
+    color: white;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    transform: translateX(260px);
+    margin: 30px 0;
+    color: var(--white-color);
+    background-color: red;
+    text-decoration: none;
+    opacity: 1;
+}
+
+.login-link:hover,
+.signup-link:hover {
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.8;
+}

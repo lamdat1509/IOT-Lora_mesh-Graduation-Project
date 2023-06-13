@@ -1,0 +1,156 @@
+:root {
+    --white-color: #fff;
+    --black-color: #000;
+    --text--color: #333;
+    --heading-color: yellow;
+    --primary-color: #ee4d2d;
+    --border-color: #dbdbdd;
+
+    --header-height: 120px;
+    --navbar-height: 34px;
+    --header-with-search-height: calc(var(--header-height) - var(--navbar-height));
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 1rem;
+    line-height: 1.6rem;
+    font-family: 'roboto', sans-serif;
+}
+
+/* background */
+
+.header__navar-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+/* Modal */
+
+.modal {
+    /* modal chiếm hết màn hình */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    animation: fedeIn linear 0.1s;
+}
+
+.modal__overplay {
+    /* lớp phủ mờ */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal__body {
+    --growth-from: 0.7;
+    --growth-to: 1;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+    animation: growth linear 0.1s;
+    align-items: center;
+    justify-content: center;
+}
+
+/*-------------------- respon css ----------------------------- */
+
+/* PC */
+@media (min-width:1024px) {
+    .wapper {
+        padding: 10px 51px 20px 30px;
+    }
+
+    .btn-login,
+    .btn-signup {
+        margin-bottom: 20px;
+    }
+}
+
+/* tablet */
+@media (min-width:46.25em) and (max-width:63.9375em) {
+
+    .wapper {
+        padding: 10px 51px 20px 30px;
+    }
+
+    .btn-login,
+    .btn-signup {
+        margin-bottom: 20px;
+    }
+
+    .login-link,
+    .signup-link {
+        position: relative;
+        padding: 9px 130px;
+        right: 258px;
+        top: 8px;
+    }
+
+    .btn-signup,
+    .btn-login {
+        position: relative;
+        width: 100%;
+        right: 29px;
+        top: 5px;
+    }
+}
+
+/* mobile */
+@media (max-width:739px) {
+    .modal_body_respon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .auth-form__input {
+        width: 70%;
+        margin-left: 35px;
+    }
+
+    .auth-form__group-icon {
+        position: relative;
+        left: -100px;
+    }
+
+    .auth-form__eyes-sign-pass {
+        float: left;
+    }
+
+    .login-link,
+    .signup-link {
+        position: relative;
+        padding: 9px 84px;
+        right: 258px;
+        top: 8px;
+    }
+
+    .btn-signup,
+    .btn-login {
+        position: relative;
+        width: 100%;
+        right: 29px;
+        top: 5px;
+        margin-bottom: 34px;
+    }
+}

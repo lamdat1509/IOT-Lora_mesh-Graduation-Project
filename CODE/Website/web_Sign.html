@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign_Up</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="stylesheet" href="./assest/css/base.css">
+    <link rel="stylesheet" href="./assest/css/main.css">
+    <link rel="stylesheet" href="./assest/fonts/fontawesome-free-6.2.0-web/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div class="header__navar">
+        <video src="./assest/img/nen.mp4" autoplay muted loop class="header__navar-video"></video>
+    </div>
+    <div class="modal">
+        <div class="modal__overplay"></div>
+        <div class="modal__body modal_body_respon">
+            <!--Sign Up form (biểu mẫu đăng ký) -->
+            <div class="wapper">
+                <div class="wapper-heading">
+                    <h1>Sign Up</h1>
+                </div>
+                <div class="auth-form__input">
+
+                    <div class="input__field">
+                        <i class="auth-form__group-icon fa-regular fa-user"></i>
+                        <input id="nameInp" type="text" placeholder="Full name" />
+                    </div>
+
+                    <div class="input__field">
+                        <i class="auth-form__group-icon fa-solid fa-envelope"></i>
+                        <input class="input__field-bnt" id="emailInp" type="text" placeholder="Email" />
+                    </div>
+
+                    <div class="input__field">
+                        <i class="auth-form__group-icon fa-regular fa-user"></i>
+                        <input class="input__field-bnt" type="text" id="usernameInp" placeholder="User Name" />
+                    </div>
+
+
+                    <div class="input__field">
+                        <i class="auth-form__group-icon fa-solid fa-key"></i>
+                        <input type="password" class="input__field-bnt" id="passwordInp" placeholder="Password" />
+                        <div class="eye">
+                            <i class="auth-form__eyes-sign-pass far fa-eye"></i>
+                        </div>
+                    </div>
+                    <a href="web_login.html" class="login-link">Login</a>
+                    <button type="text" id="sub_btn" class="btn btn-signup">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="assest/js/app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyC33V38Hx84QDyFkvnV8bTsISou-os3ENE",
+        authDomain: "test-7e8c2.firebaseapp.com",
+        databaseURL: "https://test-7e8c2-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "test-7e8c2",
+        storageBucket: "test-7e8c2.appspot.com",
+        messagingSenderId: "962009503887",
+        appId: "1:962009503887:web:07ecbe61bcb66ab66338fa"
+    };
+    const app = initializeApp(firebaseConfig);
+
+    import { getDatabase, ref, set, child, get }
+        from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+
+
+    const db = getDatabase();
+
+    // ------------------THE REFRENECES------------------//
+
+    const name = document.getElementById('nameInp')
+    const email = document.getElementById('emailInp')
+    const userName = document.getElementById('usernameInp')
+    const password = document.getElementById('passwordInp')
+    const submit = document.getElementById('sub_btn')
+
+    //---------------------------------------------------//
+
+    function isEmptyOrSpaces(str) {
+        return str === null || str.match(/^ *$/) !== null;
+    }
+
+    function Validation() {
+        let nameregex = /^[a-zA-Z]+$/;
+        let emailregex = /^[a-zA-Z0-9]+@(gmail|yahoo|outlook)\.com$/;
+        let userregex = /^[a-zA-Z0-9]{5,}$/;
+
+
+        if (isEmptyOrSpaces(name.value) || isEmptyOrSpaces(email.value) || isEmptyOrSpaces(userName.value) || isEmptyOrSpaces(password.value)) {
+            alert("you canot left any field empty");
+            return false;
+        }
+
+        if (!nameregex.test(name.value)) {
+            alert("the name should only contain alphabest!");
+            return false;
+        }
+
+        if (!emailregex.test(email.value)) {
+            alert("enter a valid email");
+            return false;
+        }
+
+        if (!userregex.test(userName.value)) {
+            alert("-username can only be alphanumeric!\n -username must be aleast 5 charactrs\n --username cannot cotain ");
+            return false;
+        }
+        return true
+    }
+
+    // ------------------REGISTER USER----------------//
+
+    function RegisterUser() {
+        if (!Validation()) {
+            return;
+        }
+        const dbRef = ref(db);
+
+        get(child(dbRef, "Userslist/" + userName.value)).then((snapshot) => {
+            if (snapshot.exists()) {
+                alert("accuout already exits!")
+            }
+            else {
+                set(ref(db, "Userslist/" + userName.value),
+                    {
+                        fullname: name.value,
+                        email: email.value,
+                        userName: userName.value,
+                        password: encPass()
+                    })
+                    .then(() => {
+                        alert("user added successfudly");
+                    })
+                    .catch(() => {
+                        alert("error" + error);
+                    })
+            }
+        });
+    }
+    //-----------------------------------------------------------------------//
+    function encPass() {
+        var encrypted = CryptoJS.AES.encrypt(password.value, password.value);
+        return encrypted.toString()
+    }
+    // ------------------------------assign the event-----------------------//
+    submit.addEventListener('click', RegisterUser);
+</script>
+
+</html>
